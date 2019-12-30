@@ -1,1 +1,39 @@
+*{
+    font-family: Arial, Helvetica, sans-serif;
+    box-sizing: border-box;
+    border: none;
+    border-radius: 4px;
+    padding: 1px;
+    margin: .1px;
+} 
+body{
+    background-color: rgb(206, 230, 231);
+}
  
+ button{
+     padding: 3px 19px;
+     background-color: antiquewhite;
+     border: solid transparent thin;
+
+ }
+ input{
+    padding: 5px;
+ }
+ 
+div{
+     width: 100%;
+}
+select{
+    padding: 4px;
+    font-weight: bold;
+}
+
+ .hero{
+    height: auto;
+    border: outset cyan thin;
+ }
+
+ .input-fields{
+    background-color: burlywood;
+    border-radius:  0px;
+ }
