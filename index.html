@@ -9,10 +9,11 @@
 </head>
 <body>
 <div class="hero">
-    <div class="result-box">&nbsp;</div>
-   <div class="alert-box">&nbsp;</div>
-   <div class="alert-box">&nbsp;</div>
+    <div class=" box blue">show result after calculations</div>
+   <div class=" box red">show total expenses</div>
+   <div class=" box green">show total income</div>
 </div>
+
    
 <div class="input-fields">
     <select name="type" id="" required>
@@ -22,7 +23,21 @@
     <input type="text" name="description" id="" placeholder="description">
     <input type="number" name="value" id="" placeholder="value">
     <button type="submit">Submit</button>
+</div>
+
+<div class="display-box">
+    <div class="income green" id="">
+       <div class="description">sold car</div>
+       <div class="value">15000</div>
+       <div class="delete"><button class="delete red">x</button></div>
+    </div>
     
+    
+    <div class="expenses red">expenses
+        <div class="description">sold car</div>
+       <div class="value">15000</div>
+       <div class="delete"><button class="delete blue">x</button></div>
+    </div>
 </div>
 <script src="app.js" defer></script>    
 </body>

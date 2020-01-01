@@ -59,6 +59,15 @@ var UIController = (function(){
             description: document.querySelector("[name='description']").value,
             value: document.querySelector("[name='value']").value
             }
+        },
+        addListItem: function(obj, type){
+            //create html strings with placeholders text
+
+
+            //replace placeholder text with actual data
+
+
+            //insert html into the dom 
         }
     };
 })();
@@ -80,6 +89,7 @@ var controller = (function(budgetCtrl, uiCtrl){
         //2. add the item to the budget controller
         var newItem = budgetCtrl.addItem(inputs.type, inputs.description, inputs.value);
         //3. add the items to the ui
+
         //4. calculate the budget
         // 5. display the budget on the ui
     }

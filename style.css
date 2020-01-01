@@ -16,13 +16,17 @@ body{
      border: solid transparent thin;
 
  }
+ 
+ table{
+     border-collapse: collapse;
+ }
+
+
  input{
     padding: 5px;
  }
  
-div{
-     width: 100%;
-}
+
 select{
     padding: 4px;
     font-weight: bold;
@@ -31,9 +35,48 @@ select{
  .hero{
     height: auto;
     border: outset cyan thin;
+    width: 100%;
+    padding: 5%;
+    background-color: wheat;
  }
 
  .input-fields{
     background-color: burlywood;
     border-radius:  0px;
  }
+
+ .box{
+    max-width: 35%;
+    padding: 15px;
+    border: thin yellow solid;
+    margin: 3px auto;
+    font-weight: bold;
+    color: whitesmoke;
+    text-align: center;
+ }
+
+ .red{background-color: red; border: thick solid red;}
+ .green{background-color: green; border: thick solid green;}
+ .blue{background-color: blue; border: thick solid blue; }
+
+ .display-box{
+    display: flex;
+    flex-basis: auto;
+    margin: auto;
+    justify-content: center;
+    align-content:space-between ;
+    flex-wrap: wrap;
+    align-items: stretch;
+    max-width: 100%;
+ }
+.income, .expenses{
+    display: flex;
+    align-self: flex-start;
+    flex-grow: 1;
+}
+
+.expenses{
+    align-self: flex-start;
+    max-width: 50%;
+    flex-grow: 1;
+}
