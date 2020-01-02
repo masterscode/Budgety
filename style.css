@@ -7,7 +7,7 @@
     margin: .1px;
 } 
 body{
-    background-color: rgb(206, 230, 231);
+    box-sizing: border-box;
 }
  
  button{
@@ -21,15 +21,12 @@ body{
      border-collapse: collapse;
  }
 
-
- input{
-    padding: 5px;
- }
  
 
-select{
+select, input, button{
     padding: 4px;
     font-weight: bold;
+    text-align: center;
 }
 
  .hero{
@@ -37,13 +34,18 @@ select{
     border: outset cyan thin;
     width: 100%;
     padding: 5%;
-    background-color: wheat;
+    background: linear-gradient( white, rgb(243, 243, 67));
  }
 
  .input-fields{
     background-color: burlywood;
     border-radius:  0px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
  }
+.input-fields * {margin:5px;}
+
 
  .box{
     max-width: 35%;
@@ -56,27 +58,42 @@ select{
  }
 
  .red{background-color: red; border: thick solid red;}
- .green{background-color: green; border: thick solid green;}
- .blue{background-color: blue; border: thick solid blue; }
-
+ 
  .display-box{
     display: flex;
     flex-basis: auto;
     margin: auto;
-    justify-content: center;
-    align-content:space-between ;
+    justify-content: space-between;
+    align-content:flex-start;
     flex-wrap: wrap;
     align-items: stretch;
-    max-width: 100%;
+    width: 80%; 
+    font-weight:  bold;
+    margin-top: 5px;
+    
+
  }
 .income, .expenses{
     display: flex;
-    align-self: flex-start;
-    flex-grow: 1;
+    justify-content: space-between;
+    padding: 5px;
+    border-radius: 0px;
+    border-bottom:dotted thick black;
+    border-top:dotted thick black;
+    flex-basis:45%;
+    align-items: center;
+    background-color: white;
+        
 }
 
 .expenses{
-    align-self: flex-start;
-    max-width: 50%;
-    flex-grow: 1;
+    max-width: 50%;    
+}
+
+.delete-button{
+    background-color: red;
+    padding-right: 9px;
+    padding-left: 9px;
+    text-align: center;
+    color:white;
 }
