@@ -61,13 +61,24 @@ var UIController = (function(){
             }
         },
         addListItem: function(obj, type){
+            var html, newHTML, element;
             //create html strings with placeholders text
-
-
+            if(type === 'income'){
+            element = '.income-list';
+            html = '<div class="income" id="income-%id%"><div class="description">%description%</div><div class="value">%value%</div><button class="delete-button">x</button></div>';
+            }
+            else if(type === 'expenses'){
+            element = '.expenses-list';
+            html =  '<div class="expenses" id="expenses-%id%"><div class="description">%description%</div><div class="value">%value%</div><button class="delete-button">x</button></div>';
+            }
             //replace placeholder text with actual data
-
-
+            newHTML = html.replace('%id%', obj.id);
+            newHTML = newHTML.replace('%description%', obj.description);
+            newHTML = newHTML.replace('%value%', obj.value);
             //insert html into the dom 
+
+            document.querySelector(element).insertAdjacentHTML('beforeend', newHTML);
+             
         }
     };
 })();
@@ -89,7 +100,7 @@ var controller = (function(budgetCtrl, uiCtrl){
         //2. add the item to the budget controller
         var newItem = budgetCtrl.addItem(inputs.type, inputs.description, inputs.value);
         //3. add the items to the ui
-
+        uiCtrl.addListItem(newItem, inputs.type)
         //4. calculate the budget
         // 5. display the budget on the ui
     }

@@ -63,25 +63,35 @@ select, input, button{
     font-weight:  bold;
     margin-top: 5px;
     text-transform: capitalize;
-    
-
  }
+
 .income, .expenses{
     display: flex;
     flex-wrap: nowrap;
     justify-content: space-between;
     padding: 5px;
     border-radius: 0px;
-    border-bottom:dotted thick black;
-    border-top:dotted thick black;
-    flex-basis:45%;
+    /* border-bottom:dotted thin black; */
+    border-top:dotted thin black;
+    flex-basis:100%;
+    width: 100%;
     align-items: center;
     background-color: white;
+    
         
 }
 
-.expenses{
-    /* max-width: 50%;     */
+.expenses-list, .income-list{
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    /* flex-basis:45%; */
+    width: 49%;
+    align-items: center;
+    padding-top: 1px;
+    text-align: left;
+    height: auto;
+    
 }
 
 .delete-button{
