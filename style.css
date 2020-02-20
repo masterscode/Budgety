@@ -27,7 +27,7 @@ button {
 }
 
 .hero div {
-	border: solid thin violet;
+	/* border: solid thin violet; */
 }
 
 .input-fields {
@@ -41,14 +41,17 @@ button {
 	margin: 5px;
 }
 
+.aside {margin-left: auto;}
+
 .box {
+	display:flex;
+	justify-content: space-between;
 	max-width: 35%;
 	padding: 15px;
 	border: thin yellow solid;
 	margin: 3px auto;
 	font-weight: bold;
-	color: whitesmoke;
-	text-align: center;
+	
 }
 
 .red {

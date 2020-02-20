@@ -59,7 +59,7 @@ var budgetController = (function() {
 			if(data.totals.income > 0){
 				data.percentage = Math.round(data.totals.expenses / data.totals.income);
 			}else{
-				data.percentage = -1;
+				data.percentage = 0;
 			}
 		},
 		getBudget: function() {
@@ -115,7 +115,14 @@ var UIController = (function() {
 			allInputFields[0].focus();
 		},
 		displayBudget: function(obj){
-			//
+			document.querySelector('#totalIncome').textContent = obj.totalIncome;
+			document.querySelector('#totalExpenses').textContent = obj.totalExpenses;
+			document.querySelector('#totalBudget').textContent = obj.budget;
+			//if(obj.percentage > 0){
+			// document.querySelector('#percentage').textContent = obj.percentage + '%'; fix the percentage feature later!
+			//}else{
+			///	document.querySelector('#percentage').textContent += 0;
+			//}
 		}
 	};
 })();
@@ -138,7 +145,7 @@ var controller = (function(budgetCtrl, uiCtrl) {
 		//2. return the budget
 		var budget = budgetCtrl.getBudget();
 		//3. display the budget on the ui
-		console.log(budget);
+		uiCtrl.displayBudget(budget);
 	};
 
 	var uiCtrlAddItem = function() {
@@ -159,6 +166,7 @@ var controller = (function(budgetCtrl, uiCtrl) {
 	return {
 		init: function() {
 			console.log('application has started!!');
+			UIController.displayBudget({budget: 0, totalIncome: 0, totalExpenses: 0 });
 			setupEventListeners();
 		}
 	};
