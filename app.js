@@ -15,7 +15,7 @@ var budgetController = (function() {
 		allItems: {
 			expenses: [],
 			income: []
-		},
+ 		},
 		totals: { income: 0, expenses: 0 }
 	};
 
@@ -53,7 +53,7 @@ var UIController = (function() {
 			return {
 				type: document.querySelector("[name='type']").value,
 				description: document.querySelector("[name='description']").value,
-				value: document.querySelector("[name='value']").value
+				value: parseFloat(document.querySelector("[name='value']").value)
 			};
 		},
 		addListItem: function(obj, type) {
@@ -75,7 +75,15 @@ var UIController = (function() {
 			//insert html into the dom
 
 			document.querySelector(element).insertAdjacentHTML('beforeend', newHTML);
-		}
+        },
+        clearFields: function(){
+            var allInputFields = document.querySelectorAll('input');
+            allInputFields.forEach(function(elem){
+                elem.value = ""
+            })
+            allInputFields[0].focus();
+        }
+        
 	};
 })();
 
@@ -85,19 +93,33 @@ var controller = (function(budgetCtrl, uiCtrl) {
 		document.querySelector('button').addEventListener('click', uiCtrlAddItem);
 
 		document.addEventListener('keypress', (event) => {
-			if (event.keyCode === 13) uiCtrlAddItem();
+			if (event.keyCode === 13) {
+                uiCtrlAddItem();
+            }
 		});
-	};
+    };
+    
+    var updateBudget = function(){
+        //4. calculate the budget
+		// 5. display the budget on the ui
+    }
+   
+
 	var uiCtrlAddItem = function() {
-		//1. get the field input data
-		var inputs = uiCtrl.getInput();
+    //1. get the field input data
+        var inputs = uiCtrl.getInput();
+        if(inputs.description !== "" && !isNaN(inputs.value) && inputs.value > 0){
 		//2. add the item to the budget controller
 		var newItem = budgetCtrl.addItem(inputs.type, inputs.description, inputs.value);
 		//3. add the items to the ui
-		uiCtrl.addListItem(newItem, inputs.type);
-		//4. calculate the budget
-		// 5. display the budget on the ui
-	};
+        uiCtrl.addListItem(newItem, inputs.type);
+       //4.0 clear all fields
+        uiCtrl.clearFields();
+        //5. calculate and update budget
+        updateBudget();
+		
+    }
+};
 
 	return {
 		init: function() {
