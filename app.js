@@ -15,8 +15,18 @@ var budgetController = (function() {
 		allItems: {
 			expenses: [],
 			income: []
- 		},
-		totals: { income: 0, expenses: 0 }
+		},
+		totals: { income: 0, expenses: 0 },
+		budget: 0,
+		percentage: -1
+	};
+
+	var calculateTotal = function(type) {
+		var sum = 0;
+		data.allItems[type].forEach(function(elem) {
+			sum += elem.value;
+		});
+		data.totals[type] = sum;
 	};
 
 	return {
@@ -38,6 +48,27 @@ var budgetController = (function() {
 
 			data.allItems[type].push(newItem);
 			return newItem;
+		},
+		calculateBudget: function() {
+			//calculate total income and expenses
+			calculateTotal('expenses');
+			calculateTotal('income');
+			//calculate the budget: income - expenses
+			data.budget = data.totals.income - data.totals.expenses;
+			//calculate the percentage of income that we spent
+			if(data.totals.income > 0){
+				data.percentage = Math.round(data.totals.expenses / data.totals.income);
+			}else{
+				data.percentage = -1;
+			}
+		},
+		getBudget: function() {
+			return {
+				budget: data.budget,
+				totalIncome: data.totals.income,
+				totalExpenses: data.totals.expenses,
+				percentage: data.percentage
+			};
 		},
 		testData: function() {
 			console.log(data);
@@ -75,15 +106,17 @@ var UIController = (function() {
 			//insert html into the dom
 
 			document.querySelector(element).insertAdjacentHTML('beforeend', newHTML);
-        },
-        clearFields: function(){
-            var allInputFields = document.querySelectorAll('input');
-            allInputFields.forEach(function(elem){
-                elem.value = ""
-            })
-            allInputFields[0].focus();
-        }
-        
+		},
+		clearFields: function() {
+			var allInputFields = document.querySelectorAll('input');
+			allInputFields.forEach(function(elem) {
+				elem.value = '';
+			});
+			allInputFields[0].focus();
+		},
+		displayBudget: function(obj){
+			//
+		}
 	};
 })();
 
@@ -94,32 +127,34 @@ var controller = (function(budgetCtrl, uiCtrl) {
 
 		document.addEventListener('keypress', (event) => {
 			if (event.keyCode === 13) {
-                uiCtrlAddItem();
-            }
+				uiCtrlAddItem();
+			}
 		});
-    };
-    
-    var updateBudget = function(){
-        //4. calculate the budget
-		// 5. display the budget on the ui
-    }
-   
+	};
+
+	var updateBudget = function() {
+		//1. calculate the budget
+		budgetCtrl.calculateBudget();
+		//2. return the budget
+		var budget = budgetCtrl.getBudget();
+		//3. display the budget on the ui
+		console.log(budget);
+	};
 
 	var uiCtrlAddItem = function() {
-    //1. get the field input data
-        var inputs = uiCtrl.getInput();
-        if(inputs.description !== "" && !isNaN(inputs.value) && inputs.value > 0){
-		//2. add the item to the budget controller
-		var newItem = budgetCtrl.addItem(inputs.type, inputs.description, inputs.value);
-		//3. add the items to the ui
-        uiCtrl.addListItem(newItem, inputs.type);
-       //4.0 clear all fields
-        uiCtrl.clearFields();
-        //5. calculate and update budget
-        updateBudget();
-		
-    }
-};
+		//1. get the field input data
+		var inputs = uiCtrl.getInput();
+		if (inputs.description !== '' && !isNaN(inputs.value) && inputs.value > 0) {
+			//2. add the item to the budget controller
+			var newItem = budgetCtrl.addItem(inputs.type, inputs.description, inputs.value);
+			//3. add the items to the ui
+			uiCtrl.addListItem(newItem, inputs.type);
+			//4.0 clear all fields
+			uiCtrl.clearFields();
+			//5. calculate and update budget
+			updateBudget();
+		}
+	};
 
 	return {
 		init: function() {
