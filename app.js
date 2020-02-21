@@ -137,6 +137,8 @@ var controller = (function(budgetCtrl, uiCtrl) {
 				uiCtrlAddItem();
 			}
 		});
+		
+		document.querySelector('.delete-button').addEventListener('click')
 	};
 
 	var updateBudget = function() {
